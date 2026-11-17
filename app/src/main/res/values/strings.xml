@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Root Quick Tiles</string>
+    <string name="widget_label">Quick Tiles (Root)</string>
+    <string name="widget_description">Home-screen quick settings tiles that toggle Wi-Fi, Bluetooth, DND, flashlight and more using root.</string>
+</resources>
