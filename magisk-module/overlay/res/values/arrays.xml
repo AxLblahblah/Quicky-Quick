@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Mirrors AOSP Android 12 config_statusBarIcons exactly, with tail reordered
+         from  ethernet, wifi, hotspot, mobile, airplane, battery, sensors_off
+         to     ethernet, hotspot, wifi, mobile, airplane, battery, sensors_off
+         so Wi-Fi renders directly left of the mobile signal cluster (iOS style). -->
+    <string-array name="config_statusBarIcons">
+        <item>no_calling</item>
+        <item>call_strength</item>
+        <item>alarm_clock</item>
+        <item>rotate</item>
+        <item>headset</item>
+        <item>data_saver</item>
+        <item>ime</item>
+        <item>sync_failing</item>
+        <item>sync_active</item>
+        <item>nfc</item>
+        <item>tty</item>
+        <item>speakerphone</item>
+        <item>cdma_eri</item>
+        <item>data_connection</item>
+        <item>phone_evdo_signal</item>
+        <item>phone_signal</item>
+        <item>secure</item>
+        <item>managed_profile</item>
+        <item>cast</item>
+        <item>screen_record</item>
+        <item>vpn</item>
+        <item>bluetooth</item>
+        <item>camera</item>
+        <item>microphone</item>
+        <item>location</item>
+        <item>mute</item>
+        <item>volume</item>
+        <item>zen</item>
+        <item>ethernet</item>
+        <item>hotspot</item>
+        <item>wifi</item>
+        <item>mobile</item>
+        <item>airplane</item>
+        <item>battery</item>
+        <item>sensors_off</item>
+    </string-array>
+</resources>

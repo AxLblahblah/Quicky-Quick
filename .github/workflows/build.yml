@@ -33,3 +33,28 @@ jobs:
           name: app-debug
           path: app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+
+  magisk-module:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build overlay APK
+        run: |
+          AAPT=$(ls -d $ANDROID_HOME/build-tools/*/aapt | sort -V | tail -1)
+          JAR=$(ls -d $ANDROID_HOME/platforms/android-*/android.jar | sort -V | tail -1)
+          cd magisk-module/overlay
+          "$AAPT" package -f -M AndroidManifest.xml -S res -I "$JAR" -F ../../StatusbarOrderOverlay.apk
+          cd ../..
+          mkdir -p module-pkg
+          cp magisk-module/module.prop magisk-module/customize.sh module-pkg/
+          cp StatusbarOrderOverlay.apk module-pkg/overlay.apk
+          (cd module-pkg && zip -qr ../StatusbarIconOrder-magisk.zip .)
+
+      - name: Upload Magisk module artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: magisk-module
+          path: StatusbarIconOrder-magisk.zip
+          if-no-files-found: error
