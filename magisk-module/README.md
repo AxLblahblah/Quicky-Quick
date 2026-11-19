@@ -18,3 +18,7 @@ To revert: remove the module in Magisk and reboot.
 
 - Built against the **AOSP 12** icon set. OEM SystemUIs that add their own slot names (heavy OneUI/MIUI/ColorOS mods) may show icons in different spots or ignore the overlay — tell me your device model + ROM and I'll tune the array per device.
 - A true Android-16-style *merged pill* around the connectivity icons is drawn by SystemUI code, not config — that can't be done with a config overlay; it would need a per-device SystemUI modification.
+
+## Uninstall behavior
+
+Removing the module in the Magisk app deletes the module folder (which contains the overlay APK) and then runs `uninstall.sh`, which additionally clears the compiled overlay cache in `/data/resource-cache` so the next boot is clean. Note that deleting the module folder manually (e.g., from TWRP file manager) skips `uninstall.sh` and any overlay-cache clearing, so a manual removal should be followed by `rm -rf /data/resource-cache/*` and a Dalvik cache wipe.
