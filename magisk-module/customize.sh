@@ -3,6 +3,15 @@ SKIPUNZIP=0
 
 ui_print "- Status Bar Icon Order module"
 
+# Safety: Android Go and other low-RAM builds are known to be fragile with
+# framework config overlays. Refuse to install unless the user opts in.
+if [ "$(getprop ro.config.low_ram)" = "true" ]; then
+  if [ ! -f "/sdcard/allow_statusbar_order" ]; then
+    abort "! Android Go / low-RAM device detected. This module is NOT recommended here (risk of bootloop). To override on purpose, place an empty file named 'allow_statusbar_order' in internal storage (/sdcard) and flash this zip again."
+  fi
+  ui_print "- Go / low-RAM device with explicit override file detected, continuing..."
+fi
+
 if [ ! -f "$MODPATH/overlay.apk" ]; then
   abort "! overlay.apk missing from module zip"
 fi
